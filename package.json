@@ -1,0 +1,12 @@
+{
+  "name": "sym-sanity-studio",
+  "private": true,
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "start": "sanity start"
+  },
+  "dependencies": {
+    "sanity": "^5.0.0"
+  }
+}
