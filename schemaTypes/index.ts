@@ -1,6 +1,7 @@
 import post from "./post";
 import event from "./event";
 import eventHost from "./eventHost";
+import landingSEO from './landingSEO'
 
 export const schemaTypes = [
   // object types
@@ -9,4 +10,5 @@ export const schemaTypes = [
   // document types
   post,
   event,
+  landingSEO,
 ];
