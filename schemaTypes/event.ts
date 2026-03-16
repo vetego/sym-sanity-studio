@@ -117,6 +117,17 @@ export default defineType({
       title: "Short description (1 line)",
       type: "string",
     }),
+    defineField({
+      name: "seo",
+      title: "SEO",
+      type: "object",
+      fields: [
+        defineField({name: "title", type: "string"}),
+        defineField({name: "description", type: "text", rows: 3}),
+        defineField({name: "ogImage", type: "image", options: {hotspot: true}}),
+        defineField({name: "noIndex", type: "boolean", initialValue: false}),
+      ],
+    }),
 
     // details: Keystatic text(multiline:true) -> Sanity rich text (Portable Text)
     defineField({
