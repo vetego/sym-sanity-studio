@@ -1,4 +1,4 @@
-import {defineType, defineField} from "sanity";
+import {defineType, defineField, defineArrayMember} from "sanity";
 
 export default defineType({
   name: "post",
@@ -35,7 +35,46 @@ export default defineType({
       name: "content",
       title: "Content",
       type: "array",
-      of: [{type: "block"}],
+      of: [
+        {type: "block"},
+        {
+          type: "image",
+          title: "Image",
+          options: {hotspot: true},
+          fields: [
+            defineField({
+              name: "alt",
+              title: "Alt text",
+              type: "string",
+              description: "Short description for screen readers and search engines. Not meant to be shown as a caption.",
+            }),
+          ],
+        },
+        defineArrayMember({
+          name: "ctaButton",
+          title: "CTA button",
+          type: "object",
+          fields: [
+            defineField({
+              name: "label",
+              title: "Button text",
+              type: "string",
+              validation: Rule => Rule.required(),
+            }),
+            defineField({
+              name: "url",
+              title: "Link",
+              type: "url",
+              description: "Full web address, e.g. https://app.speakyourmind.help/ru/choose-psychologist",
+              validation: Rule => Rule.required().uri({scheme: ["http", "https"]}),
+            }),
+          ],
+          preview: {
+            select: {title: "label", subtitle: "url"},
+            prepare: ({title, subtitle}) => ({title: title || "CTA button", subtitle}),
+          },
+        }),
+      ],
     }),
     defineField({
       name: "seoTitle",
